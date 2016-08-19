@@ -33,21 +33,24 @@ void draw() {
       fadingHeight = height;
   }
   else {
-    filter(BLUR, 1);
+    filter(BLUR, frameCount%2);
     fill(255,255,255,8);
     rect(0,0,width, height);
   }
-
 }
 
 // draws note with shadow
 void postIt(float x, float y) {
 
   cielch.h += 21.1;
-
+  pushMatrix();
+ 
+  translate(x, y);
+  rotate(random(0.2) - 0.1);
   fill(50, 50, 50, 50);
-  rect(x + 2, y + 5, 30, 30);
+  rect(2, 5, 30, 30);
  
   fill(cs.CIELCHtoRGB(cielch));
-  rect(x, y, 30, 30); 
+  rect(0,0, 30, 30);
+  popMatrix();
 }
